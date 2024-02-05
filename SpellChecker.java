@@ -3,8 +3,8 @@ public class SpellChecker {
 
 
 	public static void main(String[] args) {
-		String word = "coooool";//args[0];
-		int threshold =2;// Integer.parseInt(args[1]);
+		String word = args[0];
+		int threshold =Integer.parseInt(args[1]);
 		String[] dictionary = readDictionary("dictionary.txt");
 		String correction = spellChecker(word, threshold, dictionary);
 		System.out.println(correction);
@@ -59,8 +59,6 @@ public class SpellChecker {
 				return word;
 			}
 		}
-	
-		// If no match is found within the threshold, return the original word.
-		return word;
+			return word;
 	}
 }
