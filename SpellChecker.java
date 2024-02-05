@@ -3,8 +3,8 @@ public class SpellChecker {
 
 
 	public static void main(String[] args) {
-		String word = args[0];
-		int threshold = Integer.parseInt(args[1]);
+		String word = "coooool";//args[0];
+		int threshold =2;// Integer.parseInt(args[1]);
 		String[] dictionary = readDictionary("dictionary.txt");
 		String correction = spellChecker(word, threshold, dictionary);
 		System.out.println(correction);
@@ -19,10 +19,10 @@ public class SpellChecker {
 	
 
 	public static int levenshtein(String word1, String word2) {
-		if (word1.length()==0){
+		if (word1.isEmpty()){
 			return word2.length();
 		}
-		if (word2.length()==0){
+		if (word2.isEmpty()){
 			return word1.length();
 	}
 		if(word1.charAt(0)==word2.charAt(0)){
@@ -32,8 +32,8 @@ public class SpellChecker {
 			int a = levenshtein(tail(word1), word2);
 		 	int b=levenshtein(word1, tail(word2));
 			int c=levenshtein(tail(word1), tail(word2));
-			int minfornew=Math.min(a,b);
-			return 1+Math.min(minfornew,c);
+			int Currentminimum=Math.min(Math.min(b, a),c);
+			return 1+Currentminimum;
 		}
 	}
 	
@@ -46,21 +46,21 @@ public class SpellChecker {
 		for (int i = 0; i < dictionary.length; i++) {
 			dictionary[i]=in.readLine();
 		}
-
 		return dictionary;
 	}
 
 	public static String spellChecker(String word, int threshold, String[] dictionary) {
-		for (int i = 0; i < dictionary.length; i++) {	
-			if(levenshtein(word, dictionary[i])<=threshold){
-						return dictionary[i];
+		for (int i = 0; i < dictionary.length; i++) {
+			if (levenshtein(word, dictionary[i]) <= threshold) {
+				return dictionary[i];
 			}
-			if(levenshtein(word, dictionary[i])==0){
+			
+			if (levenshtein(word, dictionary[i]) == 0) {
 				return word;
-
+			}
 		}
+	
+		// If no match is found within the threshold, return the original word.
+		return word;
 	}
-		return null;
 }
-}
-
