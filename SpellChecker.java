@@ -3,8 +3,8 @@ public class SpellChecker {
 
 
 	public static void main(String[] args) {
-		String word = args[0];
-		int threshold =Integer.parseInt(args[1]);
+		String word = "hello";//args[0];
+		int threshold =1;//Integer.parseInt(args[1]);
 		String[] dictionary = readDictionary("dictionary.txt");
 		String correction = spellChecker(word, threshold, dictionary);
 		System.out.println(correction);
@@ -26,7 +26,7 @@ public class SpellChecker {
 		if (word2.isEmpty()){
 			return word1.length();
 	}
-		if(word1.charAt(0)==word2.charAt(0) || toLowerCasefirstChar(word1,word2)){
+		if(word1.charAt(0)==word2.charAt(0) && toLowerCasefirstChar(word1,word2)){
 			return	levenshtein(tail(word1),tail(word2));
 		}
 		else{
