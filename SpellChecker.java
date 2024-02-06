@@ -8,6 +8,7 @@ public class SpellChecker {
 		String[] dictionary = readDictionary("dictionary.txt");
 		String correction = spellChecker(word, threshold, dictionary);
 		System.out.println(correction);
+		
 	}
 
 	public static String tail(String str) {
@@ -25,7 +26,7 @@ public class SpellChecker {
 		if (word2.isEmpty()){
 			return word1.length();
 	}
-		if(word1.charAt(0)==word2.charAt(0)){
+		if(word1.charAt(0)==word2.charAt(0) || toLowerCasefirstChar(word1,word2)){
 			return	levenshtein(tail(word1),tail(word2));
 		}
 		else{
@@ -60,5 +61,14 @@ public class SpellChecker {
 			}
 		}
 			return word;
+	}
+
+	public static boolean  toLowerCasefirstChar (String word1,String word2){
+		String helper1 =word1.toLowerCase();
+		String helper2 =word2.toLowerCase();
+		if(helper1.charAt(0)==helper2.charAt(0)){
+			return true;
+		}
+		return false;
 	}
 }
