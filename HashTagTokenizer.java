@@ -33,6 +33,7 @@ public class HashTagTokenizer {
             return;
         }
 		if(hashtag.length()<=1){
+			// #feedback - you don't need to print a single letter if it's not in the dictionary.
 			System.out.print(hashtag.substring(0, 1));
 			return;
 		}
@@ -43,6 +44,7 @@ public class HashTagTokenizer {
 			if(existInDictionary(rest, dictionary)){
 				System.out.println(rest);
 				breakHashTag(hashtag.substring(i), dictionary);
+				// #feedback - you should break from the loop here.
 			}
 
         }

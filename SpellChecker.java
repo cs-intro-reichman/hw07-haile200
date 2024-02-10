@@ -26,6 +26,7 @@ public class SpellChecker {
 		if (word2.isEmpty()){
 			return word1.length();
 	}
+		// #feedback - you should make the input lowercase everywhere (and not just in this if).
 		if(word1.charAt(0)==word2.charAt(0) || toLowerCasefirstChar(word1,word2)){
 			return	levenshtein(tail(word1),tail(word2));
 		}
@@ -52,6 +53,7 @@ public class SpellChecker {
 
 	public static String spellChecker(String word, int threshold, String[] dictionary) {
 		for (int i = 0; i < dictionary.length; i++) {
+			// #feedback - you should return only at the end of the loop. You should loop over all the elements and return the one with the lowest distance, if it passes the threshold.
 			if (levenshtein(word, dictionary[i]) <= threshold) {
 				return dictionary[i];
 			}
